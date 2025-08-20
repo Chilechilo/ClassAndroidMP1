@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.jorgeromo.androidClassMp1.firstpartial.onboarding.viewmodel.OnboardingViewModel
+import com.jorgeromo.androidClassMp1.firstpartial.onboarding.views.OnboardingView
 import com.jorgeromo.androidClassMp1.navigation.TabBarNavigationView
 import com.jorgeromo.androidClassMp1.ui.theme.AndroidClassMP1Theme
 
@@ -20,7 +23,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidClassMP1Theme {
-                TabBarNavigationView()
+                val vm: OnboardingViewModel = viewModel()
+                OnboardingView(viewModel = vm)
+                // TabBarNavigationView()
             }
         }
     }
