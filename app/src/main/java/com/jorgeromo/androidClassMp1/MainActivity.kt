@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jorgeromo.androidClassMp1.core.datastore.DataStoreManager
 import com.jorgeromo.androidClassMp1.firstpartial.onboarding.viewmodel.OnboardingViewModel
 import com.jorgeromo.androidClassMp1.firstpartial.onboarding.views.OnboardingView
+import com.jorgeromo.androidClassMp1.ids.login.views.LoginView2
 import com.jorgeromo.androidClassMp1.navigation.TabBarNavigationView
 import com.jorgeromo.androidClassMp1.ui.theme.AndroidClassMP1Theme
 import kotlinx.coroutines.launch
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
                             scope.launch { ds.setOnboardingDone(true) }
                         }
                     )
-                    true -> TabBarNavigationView()
+                    true -> LoginView2()
                 }
             }
         }
