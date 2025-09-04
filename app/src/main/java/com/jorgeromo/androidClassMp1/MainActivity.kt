@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                             scope.launch { ds.setOnboardingDone(true) }
                         }
                     )
-                    true -> LoginView2()
+                    true -> TabBarNavigationView()
                 }
             }
         }
