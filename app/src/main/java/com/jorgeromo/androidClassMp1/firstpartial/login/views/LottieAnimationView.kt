@@ -14,9 +14,9 @@ import com.jorgeromo.androidClassMp1.R
 @Composable
 fun LottieAnimationView(
     modifier: Modifier = Modifier,
-    @RawRes resId: Int = R.raw.animation,           // tu archivo res/raw/animation.json
+    @RawRes resId: Int = R.raw.animation,
     autoplay: Boolean = true,
-    iterations: Int = IterateForever,               // 1 para una sola vez, IterateForever para loop
+    iterations: Int = IterateForever,
     speed: Float = 1f,
     contentScale: ContentScale = ContentScale.Fit
 
