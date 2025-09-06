@@ -30,5 +30,11 @@ fun FirstPartialView(NavController: NavController) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Ir a Login")
+        }
+        Button(
+            onClick = { NavController.navigate("animations") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Ir a Animacion")
     }
 }}

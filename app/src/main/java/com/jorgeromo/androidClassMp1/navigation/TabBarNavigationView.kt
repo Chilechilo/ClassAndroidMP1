@@ -1,6 +1,7 @@
 package com.jorgeromo.androidClassMp1.navigation
 
 import SecondPartialView
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -15,6 +16,8 @@ import com.jorgeromo.androidClassMp1.ids.IdsView
 import com.jorgeromo.androidClassMp1.firstpartial.login.views.LoginView
 import com.jorgeromo.androidClassMp1.thirdpartial.ThirdPartialView
 import androidx.compose.ui.graphics.Color
+import com.jorgeromo.androidClassMp1.R
+import com.jorgeromo.androidClassMp1.firstpartial.login.views.LottieAnimationView
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,7 +44,8 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
             ScreenNavigation.Sum.route to "Suma",
             ScreenNavigation.Temperature.route to "Temperatura",
             ScreenNavigation.StudentList.route to "Estudiantes",
-            ScreenNavigation.Locations.route to "Ubicaciones"
+            ScreenNavigation.Locations.route to "Ubicaciones",
+            ScreenNavigation.Animation.route to "Animation"
         )
     }
 
@@ -101,7 +105,15 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
 
             // Rutas internas
             composable(ScreenNavigation.Login.route) { LoginView() }
+            composable(ScreenNavigation.Animation.route) {
+                LottieAnimationView(
+                    modifier = Modifier.fillMaxSize(),
+                    resId = R.raw.animation,
+                    autoplay = true
+                )
+            }
             // (IMC, Sum, etc. si las usan)
+
         }
     }
 }
