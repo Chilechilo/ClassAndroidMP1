@@ -1,6 +1,7 @@
 package com.jorgeromo.androidClassMp1.navigation
 
 import SecondPartialView
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -11,15 +12,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import androidx.navigation.compose.rememberNavController
 import com.jorgeromo.androidClassMp1.firstpartial.FirstPartialView
-import com.jorgeromo.androidClassMp1.ids.imc.views.IMCView
 import com.jorgeromo.androidClassMp1.ids.IdsView
-import com.jorgeromo.androidClassMp1.ids.location.views.LocationListScreen
-import com.jorgeromo.androidClassMp1.ids.login.views.LoginView
-import com.jorgeromo.androidClassMp1.ids.student.views.StudentView
-import com.jorgeromo.androidClassMp1.ids.sum.views.SumView
-import com.jorgeromo.androidClassMp1.ids.temperature.views.TempView
+import com.jorgeromo.androidClassMp1.firstpartial.login.views.LoginView
 import com.jorgeromo.androidClassMp1.thirdpartial.ThirdPartialView
 import androidx.compose.ui.graphics.Color
+import com.jorgeromo.androidClassMp1.R
+import com.jorgeromo.androidClassMp1.firstpartial.login.views.LottieAnimationView
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +44,8 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
             ScreenNavigation.Sum.route to "Suma",
             ScreenNavigation.Temperature.route to "Temperatura",
             ScreenNavigation.StudentList.route to "Estudiantes",
-            ScreenNavigation.Locations.route to "Ubicaciones"
+            ScreenNavigation.Locations.route to "Ubicaciones",
+            ScreenNavigation.Animation.route to "Animation"
         )
     }
 
@@ -95,17 +94,26 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(ScreenNavigation.Ids.route) { IdsView(navController) }
-            composable(ScreenNavigation.FirstPartial.route) { FirstPartialView() }
+
+            // Primer Parcial -> pasa navController
+            composable(ScreenNavigation.FirstPartial.route) {
+                FirstPartialView(navController)
+            }
+
             composable(ScreenNavigation.SecondPartial.route) { SecondPartialView() }
             composable(ScreenNavigation.ThirdPartial.route) { ThirdPartialView(navController) }
 
             // Rutas internas
-            composable(ScreenNavigation.IMC.route) { IMCView() }
             composable(ScreenNavigation.Login.route) { LoginView() }
-            composable(ScreenNavigation.Sum.route) { SumView() }
-            composable(ScreenNavigation.Temperature.route) { TempView() }
-            composable(ScreenNavigation.StudentList.route) { StudentView() }
-            composable(ScreenNavigation.Locations.route) { LocationListScreen() }
+            composable(ScreenNavigation.Animation.route) {
+                LottieAnimationView(
+                    modifier = Modifier.fillMaxSize(),
+                    resId = R.raw.animation,
+                    autoplay = true
+                )
+            }
+            // (IMC, Sum, etc. si las usan)
+
         }
     }
 }
