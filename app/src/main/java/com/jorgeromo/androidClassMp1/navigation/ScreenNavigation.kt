@@ -10,7 +10,7 @@ sealed class ScreenNavigation(val route: String, val label: String, val icon: Im
     object SecondPartial : ScreenNavigation("second_partial", "2do Parcial", Icons.Default.Star)
     object ThirdPartial : ScreenNavigation("third_partial", "3er Parcial", Icons.Default.Settings)
 
-    // Rutas internas
+    // Rutas internas Primer Parcial
     object Login : ScreenNavigation("login", "Login", Icons.Default.Person)
     object IMC : ScreenNavigation("imc", "IMC", Icons.Default.Favorite)
     object Sum : ScreenNavigation("sum", "Suma", Icons.Default.Add)
@@ -18,4 +18,7 @@ sealed class ScreenNavigation(val route: String, val label: String, val icon: Im
     object StudentList : ScreenNavigation("students", "Estudiantes", Icons.Default.School)
     object Locations : ScreenNavigation("locations", "Ubicaciones", Icons.Default.LocationOn)
     object Animation : ScreenNavigation("animations", "Animacion", Icons.Default.PlayArrow)
+
+    // Segundo Parcial
+    object QrCode : ScreenNavigation("QrCodeRoute", "Código QR", Icons.Default.QrCode)
 }

@@ -18,6 +18,7 @@ import com.jorgeromo.androidClassMp1.thirdpartial.ThirdPartialView
 import androidx.compose.ui.graphics.Color
 import com.jorgeromo.androidClassMp1.R
 import com.jorgeromo.androidClassMp1.firstpartial.login.views.LottieAnimationView
+import com.jorgeromo.androidClassMp1.secondpartial.qrcode.views.QrCodeView
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -100,7 +101,7 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
                 FirstPartialView(navController)
             }
 
-            composable(ScreenNavigation.SecondPartial.route) { SecondPartialView() }
+            composable(ScreenNavigation.SecondPartial.route) { SecondPartialView(navController) }
             composable(ScreenNavigation.ThirdPartial.route) { ThirdPartialView(navController) }
 
             // Rutas internas
@@ -113,6 +114,9 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
                 )
             }
             // (IMC, Sum, etc. si las usan)
+
+            // Segundo Parcial
+            composable(ScreenNavigation.QrCode.route) { QrCodeView() }
 
         }
     }

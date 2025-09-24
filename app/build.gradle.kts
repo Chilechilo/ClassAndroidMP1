@@ -86,4 +86,12 @@ dependencies {
     // Lottie Animation
     val lottieVersion = "6.6.6"
     implementation ("com.airbnb.android:lottie-compose:$lottieVersion")
+
+    // Qr Function
+    implementation("androidx.camera:camera-core:1.3.0")
+    implementation("androidx.camera:camera-camera2:1.3.0")
+    implementation("androidx.camera:camera-lifecycle:1.3.0")
+    implementation("androidx.camera:camera-view:1.3.0")
+    implementation("com.google.mlkit:barcode-scanning:17.0.3")
+    implementation("com.google.mlkit:vision-common:17.3.0")
 }
