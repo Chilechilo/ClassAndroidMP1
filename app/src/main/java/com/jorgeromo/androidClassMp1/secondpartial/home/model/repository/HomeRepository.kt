@@ -1,0 +1,31 @@
+package com.jorgeromo.androidClassMp1.secondpartial.home.model.repository
+
+import com.jorgeromo.androidClassMp1.secondpartial.home.model.dto.HomeResponse
+import com.jorgeromo.androidClassMp1.secondpartial.home.model.network.HomeApi
+import java.io.IOException
+
+class HomeRepository(private val api: HomeApi) {
+    suspend fun getHome(): Result<HomeResponse> {
+        return try {
+            val url = "https://gist.githubusercontent.com/Manuel2210337/c8b664fc2a7c89474ea5a9393c0e53a4/raw/8d445be823e3e2265a82291347604cb0d5a02691/gistfile1.json"
+            println("[DEBUG] HomeRepository: URL de petición: $url")
+            val resp = api.getHome()
+            if (resp.isSuccessful) {
+                val body = resp.body()
+                if (body != null) {
+                    Result.success(body)
+                } else {
+                    Result.failure(Exception("Respuesta vacía del servidor (HTTP ${resp.code()})"))
+                }
+            } else {
+                val msg = resp.errorBody()?.string().orEmpty()
+                val errorMsg = "HTTP ${resp.code()} - ${resp.message()}\n$msg"
+                Result.failure(Exception(errorMsg.ifBlank { "Error al obtener datos de Home" }))
+            }
+        } catch (e: IOException) {
+            Result.failure(Exception("Sin conexión. Verifica tu red. (${e.localizedMessage})"))
+        } catch (e: Exception) {
+            Result.failure(Exception("Error inesperado: ${e.localizedMessage}"))
+        }
+    }
+}

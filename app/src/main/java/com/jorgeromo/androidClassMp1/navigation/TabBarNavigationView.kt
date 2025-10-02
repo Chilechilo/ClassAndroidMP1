@@ -19,7 +19,17 @@ import androidx.compose.ui.graphics.Color
 import com.jorgeromo.androidClassMp1.R
 import com.jorgeromo.androidClassMp1.firstpartial.login.views.LottieAnimationView
 import com.jorgeromo.androidClassMp1.secondpartial.qrcode.views.QrCodeView
-
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import com.jorgeromo.androidClassMp1.secondpartial.home.model.network.HomeApi
+import com.jorgeromo.androidClassMp1.secondpartial.home.model.repository.HomeRepository
+import com.jorgeromo.androidClassMp1.secondpartial.home.viewmodel.HomeViewModel
+import com.jorgeromo.androidClassMp1.secondpartial.home.viewmodel.HomeViewModelFactory
+import com.jorgeromo.androidClassMp1.secondpartial.home.views.HomeViewProducts
+import androidx.compose.runtime.collectAsState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -117,6 +127,20 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
 
             // Segundo Parcial
             composable(ScreenNavigation.QrCode.route) { QrCodeView() }
+            composable(ScreenNavigation.HomeProducts.route) {
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://gist.githubusercontent.com/Manuel2210337/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                val api = retrofit.create(HomeApi::class.java)
+                val repo = HomeRepository(api)
+                val viewModel: HomeViewModel = viewModel(factory = HomeViewModelFactory(repo))
+                val uiState by viewModel.ui.collectAsState()
+                LaunchedEffect(Unit) {
+                    viewModel.fetchHome()
+                }
+                HomeViewProducts(uiState = uiState)
+            }
 
         }
     }
