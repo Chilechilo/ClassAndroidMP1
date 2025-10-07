@@ -30,6 +30,7 @@ import com.jorgeromo.androidClassMp1.secondpartial.home.viewmodel.HomeViewModel
 import com.jorgeromo.androidClassMp1.secondpartial.home.viewmodel.HomeViewModelFactory
 import com.jorgeromo.androidClassMp1.secondpartial.home.views.HomeViewProducts
 import androidx.compose.runtime.collectAsState
+import com.jorgeromo.androidClassMp1.secondpartial.location.LocationCoordianteView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -140,6 +141,9 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
                     viewModel.fetchHome()
                 }
                 HomeViewProducts(uiState = uiState)
+            }
+            composable(ScreenNavigation.LocationCoordinate.route) {
+                LocationCoordianteView()
             }
 
         }

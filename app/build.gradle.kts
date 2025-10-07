@@ -26,15 +26,23 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
+    }
+
+    // NUEVA CONFIGURACIÓN AGREGADA
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.12"
     }
 }
 
@@ -44,48 +52,38 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
-    // BOM de Compose
-    implementation(platform(libs.androidx.compose.bom))
+    // BOM de Compose (actualizado)
+    implementation(platform("androidx.compose:compose-bom:2024.10.01"))
 
-    // Artefactos Compose (sin versión explícita; los controla el BOM)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    // Artefactos Compose
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.foundation:foundation")
 
-    // Navegación (deja una sola versión)
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
-
-    // Icons extendidos (sin versión, gobernado por el BOM)
+    // Icons extendidos
     implementation("androidx.compose.material:material-icons-extended")
 
-    // ViewModel para Compose (recomendado 2.8.x)
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+    // Navegación
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    // Networking (no requerido para el onboarding)
+    // ViewModel para Compose (versión más reciente)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
+
+    // Retrofit y OkHttp (Networking)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.6.4")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
-    // Pager moderno (HorizontalPager / rememberPagerState)
-    implementation("androidx.compose.foundation:foundation")
-
     // Splash
-    implementation ("androidx.activity:activity-compose:1.9.2")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
-    implementation ("androidx.compose.material3:material3:1.2.1")
+    implementation("androidx.activity:activity-compose:1.9.2")
 
     // Lottie Animation
     val lottieVersion = "6.6.6"
-    implementation ("com.airbnb.android:lottie-compose:$lottieVersion")
+    implementation("com.airbnb.android:lottie-compose:$lottieVersion")
 
     // Qr Function
     implementation("androidx.camera:camera-core:1.3.0")
@@ -95,6 +93,20 @@ dependencies {
     implementation("com.google.mlkit:barcode-scanning:17.0.3")
     implementation("com.google.mlkit:vision-common:17.3.0")
 
-    //Home
+    // Coil para imágenes
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // Google Location Services (nuevo)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // Coroutines (nuevo)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
